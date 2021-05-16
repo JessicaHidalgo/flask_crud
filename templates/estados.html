@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CRUD Estados</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+    
+        <h1>Agregar Estado</h1>
+        <form method="POST" action ="/">
+        <input type= "text" name = "clave">
+        <input type= "text" name = "description">
+        <input type= "submit" value= "Agregar">
+        </form>
+        <h1>Estados</h1>
+        <table>
+            {%for estado in estados%}
+            <tr>
+                <td>
+                    {{estado.clave}}
+                </td>
+                <td>
+                    {{estado.description}}
+                </td>
+                <td>
+                <form method="POST" action="./update" style="display: inline">
+                <input type="hidden" value = {{estado.clave}} name="clave">
+                <input type="text" value="{{estado.nueva_description}}" name="nueva_description">
+                <input type="submit" value="Actualizar">
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="./delete" style="display: inline">
+                <input type="hidden" value = {{estado.clave}} name="clave">
+                <input type="submit" value="Borrar">
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
